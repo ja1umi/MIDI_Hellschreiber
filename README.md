@@ -1,17 +1,15 @@
 ## MIDI-Synth Hellschreiber
 
-### What is the sketch? What is it used for?
+### What is this sketch? What is it used for?
 
-This sketch generates three types[^type] of multi-tone Hellschreiber (MT-Hell) signals with the help of an external MIDI-capable sound module. It can be used for beacons, propagation tests, experimentation, and more.
-
-[^type]: chirped HELL, concurrent MT-HELL, and sequential MT-HELL.
+This sketch generates the following three types of multi-tone Hellschreiber (MT-Hell) signals with the help of an external MIDI-capable sound module: Chirped Hell, concurrent MT-Hell, and sequential MT-Hell. It can be used for beacons, propagation tests, experimentation, and more.
 
 The Hellschreiber is not a brand new, cutting-edge digital mode. In fact, It is a facsimile-like system that was invented by German engineer Rudolf Hell in the late 1920s. It was primarily used by press services (used for military purposes during World War II). Even today, amateur radio operators use it for radio communication.
 
 >[!TIP]
 >*Schreiben* is a German verb meaning "to write" and *hell* is a German adjective meaning "bright". Therefore, *Hellschreiber* has two meanings: "Hell's bright (clear) writer" and "writer developed by Hell," in my opinion.
 
-After many years, a number of variants have emerged. One of these is the multi-tone Hellschreiber. It is radio amateurs who developed many of these variants in the 1990s. Unfortunately, these variants, as well as other modern digital modes, require a lot of resources; they need a fast CPU and plenty of memory for reception, but a modern PC can handle it easily. Even a single-board computer like the `Raspberry Pi Zero` can perform a fast Fourier transform (FFT) on the fly.
+After many years, a number of variants have emerged. One of these is the multi-tone Hellschreiber. It is radio amateurs who developed many of these variants in the 1990s. Unfortunately, these variants, as well as other modern digital modes, require a lot of resources; they need a fast CPU and plenty of memory for signal processing but most of recent PCs can handle it with ease. Even a single-board computer like the `Raspberry Pi Zero` is far more powerful than you might imagine. It can perform a Fast Fourier Transform (FFT) on the fly.
 
 MT-Hell converts images into sounds (tones) suitable for transmission. Each row of pixels in a character corresponds to a different frequency. Upon reception, these transmitted characters can be read using a FFT display, also known as a waterfall plot, which converts the signal back into a form that can be read by humans.
 
@@ -22,6 +20,11 @@ As mentioned above, pixels of characters are simply converted into tones and sen
 These characteristics provide programmers with a wide range of flexibility for implementation, improvement, and experimentation. These changes can be made freely without affecting existing programs.
 
 As you may have noticed, precise tone generation is an essential part of the system. An electronic musical instrument, or sound module, is also an excellent audio signal generator because it has a buit-in fine-tuning feature. I had great success with the `Unit-Synth` and the `Unit-MIDI` from the M5STACK team, both of which use the `SAM2695` synthesizer chip. However, other external hardware sound modules, such as the `Roland SC-55Mk2` or the `YAMAHA MU-80`, can be used for this purpose, provided they are MIDI-based.
+
+### Requirements
+
+* An Arduino Nano Every (not Nano)
+* An MIDI-capable sound module (e.g., Unit-Synth or Unit-MIDI for M5Stack)
 
 > [!NOTE]
 > According to my experience, avoid the VS1053b-based module like the plague due to its very poor tone tuning capability.
